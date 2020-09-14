@@ -41,12 +41,14 @@ app.get("/compose", function(req, res){
 app.post("/compose", function(req,res){
   const composition = {title:req.body.compositionTitle , post:req.body.compositionPost};
 
-  posts.push(composition);
+  posts.unshift(composition);
   res.redirect("/");
 
 })
 
-
+app.post("/",function(req,res){
+  res.redirect("/compose");
+})
 
 
 
