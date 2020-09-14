@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+
+<!-- THIS LISTS OLDEST POSTS FIRST, (FIX IN THE FUTURE?) -->
+
+
+<% for(let i=0; i< content.length; i++){ %>
+
+<h1>
+  <%= content[i].title %>
+  </h1>
+<p>
+  <%= content[i].post %>
+</p>
+
+<% } %>
+
+
+
+
+
+
+<%-include("partials/footer") %>
