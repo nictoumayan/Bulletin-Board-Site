@@ -38,6 +38,27 @@ app.get("/compose", function(req, res){
   res.render("compose");
 })
 
+app.get("/post/:postID", function (req, res) {
+
+  //if(req.params.postID === posts[{title}]){
+  //console.log(posts.includes("Test"));
+  let found = false;
+  for(var i = 0; i < posts.length; i++) {
+    if (posts[i].title == (req.params.postID)) {
+        found = true;
+        console.log("it's a match");
+        break;
+    }
+  }
+
+//}else{
+
+  console.log(posts);
+//}
+})
+
+
+
 app.post("/compose", function(req,res){
   const composition = {title:req.body.compositionTitle , post:req.body.compositionPost};
 
