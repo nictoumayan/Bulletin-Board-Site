@@ -12,7 +12,7 @@
 
   <h1> <%= post.title %> </h1>
 
-<p> <%= post.post %> </p>
+<p> <%= post.post.substring(0,99)+"...";  %> <a href="post/<%= post.title %>" >Read More</a> </p>
 <%})%>
 
 
