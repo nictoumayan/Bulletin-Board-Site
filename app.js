@@ -68,9 +68,16 @@ app.get("/post/:postID", function (req, res) {
  });
 })
 
-app.post("/post/:postID", function(req,res){
-  console.log(currentPostID);
-})
+app.post("/delete", function(req,res){
+  const currentPostID = req.body.deleteButton;
+  Post.deleteOne({_id: currentPostID}, function(err, post){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect("/");
+    }
+  })
+});
 
 
 

@@ -5,12 +5,10 @@
 
 <p> <%= content %> </p>
 
-
 <div class="">
-<form class="" action="/post/<%= currentPostID %>" method="post">
-  <button class="btn btn-secondary" type="submit" name="deleteButton">Delete</button>
+<form action="/delete" method="post">
+  <button class="btn btn-secondary" type="submit" name="deleteButton" value="<%=currentPostID %>">Delete</button>
 </form>
-
 </div>
 
 <%- include("partials/footer") %>
