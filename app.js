@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
-
+const version = 2.2;
 //require and initialize mongodb
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/blogDB", {
@@ -44,14 +44,12 @@ app.get("/", function(req, res) {
 })
 
 app.get("/contact", function(req, res) {
-  res.render("contact", {
-    content: contactContent
-  });
+  res.render("contact");
 })
 
 app.get("/about", function(req, res) {
   res.render("about", {
-    content: aboutContent
+    currentVersion: version
   });
 })
 
@@ -93,7 +91,6 @@ app.post("/delete", function(req, res) {
 
 app.post("/edit", function(req, res) {
   const currentPostID = req.body.editButton;
-  //console.log(currentPostID);
   res.redirect("/edit/" + currentPostID);
 })
 
@@ -116,47 +113,49 @@ app.get("/edit/:postID", function(req, res) {
 })
 
 app.post("/update", function(req, res) {
-      const requestedPostID = req.body.updateButton;
-      revisedTitle = req.body.revisedTitle;
-      revisedPost= req.body.revisedPost;
-      var filter = { _id: requestedPostID };
-      var update = { $set: {title: revisedTitle, content: revisedPost }};
-      Post.updateOne(filter, update, function(err, post) {
-        if(err) {
-          console.log(err);
-      }else{
-        res.redirect("/");
-      }
-    })
+  const requestedPostID = req.body.updateButton;
+  revisedTitle = req.body.revisedTitle;
+  revisedPost = req.body.revisedPost;
+  var filter = {
+    _id: requestedPostID
+  };
+  var update = {$set:{title:revisedTitle, content:revisedPost}};
+  Post.updateOne(filter, update, function(err, post) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/");
+    }
+  })
 })
 
-      app.post("/compose", function(req, res) {
+app.post("/compose", function(req, res) {
 
-        const composition = new Post({
-          title: req.body.compositionTitle,
-          content: req.body.compositionPost
-        });
+  const composition = new Post({
+    title: req.body.compositionTitle,
+    content: req.body.compositionPost
+  });
 
-        composition.save(function(err) {
-          if (!err) {
-            console.log("database updated successfully");
-            res.redirect("/");
-          }
-        });
-
-
-
-
-      })
-
-      app.post("/", function(req, res) {
-        res.redirect("/compose");
-      })
+  composition.save(function(err) {
+    if (!err) {
+      console.log("database updated successfully");
+      res.redirect("/");
+    }
+  });
 
 
 
 
-      //-------------------------------------------------------------------
-      app.listen(3000, function() {
-        console.log("Server started on port 3000");
-      });
+})
+
+app.post("/", function(req, res) {
+  res.redirect("/compose");
+})
+
+
+
+
+//-------------------------------------------------------------------
+app.listen(3000, function() {
+  console.log("Server started on port 3000");
+});
