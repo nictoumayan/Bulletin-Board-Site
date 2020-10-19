@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -7,7 +7,7 @@ const _ = require("lodash");
 const version = 2.2;
 //require and initialize mongodb
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/blogDB", {
+mongoose.connect(process.env.MONGO_LOGIN, {
   useNewURLParser: true
 });
 
