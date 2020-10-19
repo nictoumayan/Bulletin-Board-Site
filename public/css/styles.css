@@ -46,7 +46,7 @@
 #pi-btn{
 
   position:fixed;
-  bottom:0px;
-  right:0px;
+  bottom:2px;
+  right:2px;
   font-size: 8px;
 }
