@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const version = 2.5;
-//require and initialize mongodb
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_LOGIN, {
   useNewURLParser: true
