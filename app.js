@@ -155,8 +155,11 @@ app.post("/", function(req, res) {
 
 
 //-------------------------------------------------------------------
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
+if (PORT == null || PORT = ""){
+  PORT = 3000;
+}
 
 app.listen(PORT, function() {
   console.log("Server started on port ${PORT}" );
